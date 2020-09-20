@@ -1,0 +1,6 @@
+http://stackoverflow.com/questions/7709030/get-gps-location-in-a-broadcast-receiver-or-service-to-broadcast-receiver-data-t/7709140#7709140
+http://stackoverflow.com/questions/1513485/how-do-i-get-the-current-gps-location-programmatically-in-android
+http://stackoverflow.com/questions/4967448/send-sms-in-android
+http://developer.android.com/guide/topics/location/strategies.html
+
+https://developer.android.com/training/location/geofencing.html
