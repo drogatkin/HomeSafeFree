@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+
+    <EditText
+        android:id="@+id/eb_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:ems="14"
+        android:hint="@string/lb_email"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/eb_host"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/eb_email"
+        android:layout_below="@+id/eb_email"
+        android:layout_marginTop="6dp"
+        android:hint="@string/lb_mail_host"
+        android:ems="12" />
+
+    <EditText
+        android:id="@+id/eb_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/eb_email"
+        android:layout_below="@+id/eb_host"
+        android:layout_marginTop="6dp"
+        android:ems="10"
+        android:hint="@string/lb_mail_password"
+        android:inputType="textPassword" />
+
+
+
+    <EditText
+        android:id="@+id/eb_port"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/eb_email"
+        android:layout_below="@+id/eb_password"
+        android:ems="4"
+        android:layout_marginTop="6dp"
+        android:hint="@string/lb_port"
+        android:inputType="number" />
+
+    <CheckBox
+        android:id="@+id/cb_ssl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/eb_port"
+        android:layout_below="@+id/eb_password"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="6dp"
+        android:text="@string/lb_ssl" />
+
+    <CheckBox
+        android:id="@+id/cb_auth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/cb_ssl"
+        android:layout_alignBaseline="@+id/cb_ssl"
+        android:layout_marginLeft="8dp"
+
+        android:text="@string/lb_sectok" />
+
+    <ImageButton
+        android:id="@+id/bt_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/eb_port"
+        android:layout_marginTop="28dp"
+        android:layout_centerHorizontal="true"
+        android:onClick="onTestEmail"
+        android:src="@drawable/ic_test" />
+
+    <Spinner
+        android:id="@+id/sp_theme"
+        android:layout_below="@+id/bt_test"
+        android:layout_alignLeft="@+id/eb_email"
+        android:layout_marginTop="6dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ></Spinner>
+    
+</RelativeLayout>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <EditText
+        android:id="@+id/eb_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="8dp"
+        android:hint="@string/lb_nameben"
+        android:ems="10" >
+
+    </EditText>
+
+    <EditText
+        android:id="@+id/eb_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/eb_name"
+        android:layout_below="@+id/eb_name"
+        android:layout_marginTop="8dp"
+        android:ems="12"
+        android:hint="@string/lb_email_adr"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/eb_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/eb_name"
+        android:layout_below="@+id/eb_address"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/lb_phone"
+        android:inputType="phone" />
+
+    <CheckBox
+        android:id="@+id/cb_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/eb_name"
+        android:layout_below="@+id/eb_phone"
+        android:layout_marginTop="12dp"
+        android:text="@string/lb_email_adr" />
+
+    <CheckBox
+        android:id="@+id/cb_sms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/cb_email"
+        android:layout_alignTop="@+id/cb_email"
+        android:layout_marginLeft="20dp"
+        android:text="@string/lb_sms" />
+
+    <EditText
+        android:id="@+id/eb_templ"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/eb_name"
+        android:layout_below="@+id/cb_email"
+        android:layout_marginTop="12dp"
+        android:ems="14"
+        android:hint="@string/lb_mes_tmpl"
+        android:inputType="textMultiLine" >
+        
+    </EditText>
+    
+    <ImageButton
+        android:id="@+id/bt_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="8dp"
+        android:onClick="onTakePhoto"
+        android:src="@android:drawable/ic_menu_camera" />
+
+    <ImageView
+        android:id="@+id/im_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/bt_photo"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="12dp"
+        android:onClick="onClearPhoto"
+        android:src="@drawable/ic_smile_dis" />
+    
+</RelativeLayout>

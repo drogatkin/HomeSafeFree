@@ -1,0 +1,77 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".HomeSafeActivity" >
+
+
+    <ImageButton
+        android:id="@+id/bt_add_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="6dp"
+        android:onClick="onAddHome"
+        android:src="@drawable/ic_add_home" />
+
+    <ListView
+        android:id="@+id/lt_homes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/bt_add_home"
+        android:layout_marginTop="4dp" >
+    </ListView>
+
+    <TextView
+        android:id="@+id/tlb_last_loc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/bt_add_home"
+        android:layout_marginLeft="6dp"
+        android:text="@string/lb_last_loc"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/eb_queue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_toLeftOf="@+id/bt_add_home"
+        android:text="0"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    
+    <TextView
+        android:id="@+id/eb_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tlb_last_loc"
+        android:layout_below="@+id/tlb_last_loc"        
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    
+    <TextView
+        android:id="@+id/eb_lat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/eb_city"
+        android:layout_below="@+id/tlb_last_loc"
+        android:layout_marginLeft="10dp"        
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    
+     <TextView
+        android:id="@+id/eb_lon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/eb_lat"
+        android:layout_below="@+id/tlb_last_loc"
+        android:layout_toLeftOf="@+id/bt_add_home"
+        android:layout_marginLeft="4dp"        
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+</RelativeLayout>

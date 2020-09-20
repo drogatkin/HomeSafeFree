@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">HomeSafe</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_clear">Clear pending notifications</string>
+    <string name="lb_title_fmt">%1$s - %2$s</string>
+    <string name="lb_namehome">Home name</string>
+    <string name="lb_address">Street Address</string>
+    <string name="lb_city">City</string>
+    <string name ="lb_country">Country</string>
+    <string name="lb_longitude">Longitude</string>
+    <string name="lb_latitude">Latitude</string>
+    <string name="lb_postcode">Post code</string>
+    <string name="lb_active">Active</string>
+    <string name="lb_new">New</string>
+    
+    <string name="lb_email">E-mail (login)</string>
+    <string name="lb_mail_host">SMTP server</string>
+    <string name="lb_mail_password">Password</string>
+    <string name="lb_port">Port</string>
+    <string name="lb_ssl">Secure</string>
+    
+    <string name="lb_email_adr">E-mail</string>
+    <string name="lb_nameben">Person name</string>
+    <string name="lb_phone">Phone (SMS)</string>
+    <string name="lb_sms">Send SMS</string>
+    <string name="lb_on_leave">Notify when leaving</string>
+    <string name="lb_sectok">Security token</string>
+    
+    <string name="me_modify">Modify</string>
+    <string name="me_delete">Delete</string>
+    
+    <string name="lb_last_loc">Last location</string>
+    <string name="lb_mh_home">Operations</string>
+    <string name="lb_notif_subj">[HomeSafe] Notification for %2$s at %1$tr</string>
+    <string name="lb_email_test">Test e-mail</string>
+    <string name="lb_email_working">It is working!</string>
+     <string name="lb_wait">Please wait...</string>
+     <string name="lb_get_loc">Acquiring location</string>
+     <string name="lb_link_help">Any person record has to be linked to the location to get notifications</string>
+    
+    <string name="lb_mes_tmpl">Hey Mom, Dad just have reached home safely, kisses, Emmy.</string>
+    <string name="tit_resizeim">Select region</string>
+    
+    <string name="err_no_location">Please make sure your device support location service and it is enable</string>
+    <string name="err_send_email">Error: %1$s</string>
+    <string name="err_no_photo_taken">It was a problem in acquiring photo</string>
+    <string name="err_no_tag_name">You didn\'t provide tag name for the location, erase other details for cancel</string>
+    <string name="err_db_integrity">Database integrity error (%1$s), try to uninstall and then install</string>
+    <string name="err_no_perm_sms">Sending SMS is not allowed</string>
+
+    <string-array name="themes_sel">
+        <item>Dark</item>
+        <item>Light</item>
+        <item>Auto</item>
+    </string-array>
+</resources>

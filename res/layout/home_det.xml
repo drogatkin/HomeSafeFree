@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <EditText
+        android:id="@+id/eb_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="8dp"
+        android:hint="@string/lb_namehome"
+        android:ems="10" >
+
+    </EditText>
+
+    <EditText
+        android:id="@+id/eb_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/eb_name"
+        android:layout_below="@+id/eb_name"
+        android:layout_marginTop="8dp"
+        android:ems="14"
+        android:hint="@string/lb_address"
+        android:inputType="textPostalAddress" />
+    
+    <EditText
+        android:id="@+id/eb_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/eb_name"
+        android:layout_below="@+id/eb_address"
+        android:layout_marginTop="8dp"
+        android:hint="@string/lb_city"
+        android:ems="10" >
+    </EditText>
+    
+    <EditText
+        android:id="@+id/eb_post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/eb_name"
+        android:layout_below="@+id/eb_city"
+        android:layout_marginTop="8dp"
+        android:hint="@string/lb_postcode"
+        android:inputType="number" 
+        android:ems="6" >
+    </EditText>
+    
+    <EditText
+        android:id="@+id/eb_contry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/eb_post"
+        android:layout_marginLeft="4dp"
+        android:layout_alignTop="@+id/eb_post"
+        android:hint="@string/lb_country"
+        android:inputType="number" 
+        android:ems="8" >
+    </EditText>
+    
+    <EditText
+        android:id="@+id/eb_lat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/eb_name"
+        android:layout_below="@+id/eb_post"
+        android:layout_marginTop="8dp"
+        android:ems="6"
+        android:hint="@string/lb_latitude"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/eb_lon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/eb_post"
+        android:layout_alignTop="@+id/eb_lat"
+        android:layout_marginLeft="8dp"
+        android:ems="6"
+        android:hint="@string/lb_longitude"
+        android:inputType="numberDecimal" />
+
+    <CheckBox
+        android:id="@+id/cb_leave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/eb_name"
+        android:layout_below="@+id/eb_lat"
+        android:layout_marginTop="4dp"
+        android:text="@string/lb_on_leave" />
+    
+    <ToggleButton
+        android:id="@+id/tb_active"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/eb_name"
+        android:layout_below="@+id/cb_leave"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/lb_active" />
+
+    <ImageButton
+        android:id="@+id/ib_land_ad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:onClick="onLandAddress"
+        android:src="@drawable/ic_map_pin" />
+    
+    <ImageButton
+        android:id="@+id/ib_benef"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:onClick="onManageBen"
+        android:src="@drawable/ic_smile" />
+
+</RelativeLayout>
