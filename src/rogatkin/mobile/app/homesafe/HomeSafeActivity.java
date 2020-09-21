@@ -511,6 +511,8 @@ public class HomeSafeActivity extends Activity {
 			aa.add(h);
 		}
 		aa.notifyDataSetChanged();
+		ArrayList<NotifTask> ntasks = model.load(null, NotifTask.class, "");
+		((TextView)findViewById(R.id.eb_queue)).setText(""+ntasks.size());
 	}
 
 	void updateLocationInfo() {
@@ -677,7 +679,13 @@ public class HomeSafeActivity extends Activity {
 	public static void scheduleJob(Context context) {
 		ComponentName serviceComponent = new ComponentName(context, TrackerSrv.class);
 		JobInfo.Builder builder = new JobInfo.Builder(JOB_ID, serviceComponent);
-		builder.setPeriodic(RECHECK_LOC_INTERVAL_MIN * 60 * 1000);
+		/*
+		if (android.os.Build.VERSION.SDK_INT >= 24)
+			builder.setPeriodic(RECHECK_LOC_INTERVAL_MIN * 60 * 1000, RECHECK_LOC_INTERVAL_MIN * 60 * 1000 / 2);
+		else
+			builder.setPeriodic(RECHECK_LOC_INTERVAL_MIN * 60 * 1000);*/
+		builder.setMinimumLatency(RECHECK_LOC_INTERVAL_MIN);
+		builder.setOverrideDeadline(RECHECK_LOC_INTERVAL_MIN);
 		//if (android.os.Build.VERSION.SDK_INT >= 28)
 		//	builder.setImportantWhileForeground(true);
 		//builder.setOverrideDeadline(60 * 1000);

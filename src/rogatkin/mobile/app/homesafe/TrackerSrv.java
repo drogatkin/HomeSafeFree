@@ -53,7 +53,7 @@ public class TrackerSrv extends JobService {
 		@Override
 		protected void onPostExecute(Void aVoid) {
 			Log.d(TAG, "Clean up the task here and call jobFinished...");
-			jobFinished(params, false);
+			jobFinished(params, true);
 			super.onPostExecute(aVoid);
 		}
 
@@ -107,10 +107,11 @@ public class TrackerSrv extends JobService {
 					locListener, Looper.getMainLooper());
 		Location loc = model.getCurrentLocation(locManager);
 		// loc = new Location(LocationManager.GPS_PROVIDER);
+		boolean need = false;
 		if (loc != null) {
 			if (HomeSafeActivity.__debug)
 				Log.d(TAG, " location" + loc.getLatitude());
-			boolean need = false;
+
 			float[] distance = new float[3];
 			for (Home h1 : homes) {
 				Location.distanceBetween(loc.getLatitude(), loc.getLongitude(),
@@ -128,14 +129,15 @@ public class TrackerSrv extends JobService {
 					need = true;
 			}
 			if (need == false) {
-				sendMessage();
-				HomeSafeActivity.cancelAlarm(getApplicationContext());
 				if (HomeSafeActivity.__debug)
 					Log.d(TAG, "all done in " + loc);
+				sendMessage();
 			}
 		} else if (HomeSafeActivity.__debug)
 			Log.d(TAG, "can't detect location");
-
+		if (processQueue() == false && need == false){
+			HomeSafeActivity.cancelAlarm(getApplicationContext());
+		}
 	}
 
 	boolean checkLocPermission() {
@@ -182,7 +184,6 @@ public class TrackerSrv extends JobService {
 				queuing(nt, model);
 			}
 		}
-		processQueue();
 	}
 
 	void queuing(NotifTask nt, Model m) {
@@ -197,31 +198,37 @@ public class TrackerSrv extends JobService {
 		getApplicationContext( ).sendBroadcast(intent);
 	}
 
-	void processQueue() {
+	boolean processQueue() {
 		Model model = new Model(getBaseContext());
+		boolean need = false;
 		ArrayList<NotifTask> notifs = model.load(null, NotifTask.class, "");
 		if (notifs.size() == 0)
-			return;
-		Properties mailProp = new Properties();
+			return need;
+		Properties mailProp;
 		Smtp smtp = new Smtp();
 		model.load(smtp);
+		NetAssistant net = null;
 		if (smtp.server == null || smtp.server.length() == 0
 				|| smtp.address == null || smtp.address.length() == 0)
-			return;
-		mailProp.setProperty(NetAssistant.PROP_SECURE, smtp.ssl ? "true"
-				: "false");
-
-		mailProp.setProperty(NetAssistant.PROP_MAILHOST, smtp.server);
-		if (smtp.password != null && smtp.password.length() > 0)
-			mailProp.setProperty(NetAssistant.PROP_PASSWORD, smtp.password);
-		mailProp.setProperty(NetAssistant.PROP_POPACCNT, smtp.address);
-		mailProp.setProperty(NetAssistant.PROP_MAILPORT, "" + smtp.port);
-		NetAssistant net = new NetAssistant(mailProp);
+			mailProp = null;
+		else {
+			mailProp = new Properties();
+			mailProp.setProperty(NetAssistant.PROP_SECURE, smtp.ssl ? "true"
+					: "false");
+			mailProp.setProperty(NetAssistant.PROP_MAILHOST, smtp.server);
+			if (smtp.password != null && smtp.password.length() > 0)
+				mailProp.setProperty(NetAssistant.PROP_PASSWORD, smtp.password);
+			mailProp.setProperty(NetAssistant.PROP_POPACCNT, smtp.address);
+			mailProp.setProperty(NetAssistant.PROP_MAILPORT, "" + smtp.port);
+			net = new NetAssistant(mailProp);
+		}
 		SmsManager sms = SmsManager.getDefault();
 		for(NotifTask nt:notifs) {
 			switch(nt.kind) {
 				case Model.K_EMAIL:
 					try {
+						if (net == null)
+							throw new IOException(("No mail setup"));
 						net.send(getString(R.string.app_name), nt.address, String
 										.format(getString(R.string.lb_notif_subj),
 												nt.whenCreated, nt.name),
@@ -231,6 +238,7 @@ public class TrackerSrv extends JobService {
 						nt.failMessage = e.toString();
 						nt.lastFailed = System.currentTimeMillis();
 						model.save(nt);
+						need = true;
 						if (HomeSafeActivity.__debug)
 							Log.e(TAG, "", e);
 					}
@@ -246,13 +254,15 @@ public class TrackerSrv extends JobService {
 							nt.failMessage = e.toString();
 							nt.lastFailed = System.currentTimeMillis();
 							model.save(nt);
+							need = true;
 							if (HomeSafeActivity.__debug)
 								Log.e(TAG, "", e);
 						}
-						else {
+					else {
 						nt.failMessage = "No SMS permission";
 						nt.lastFailed = System.currentTimeMillis();
 						model.save(nt);
+						need = true;
 						if (HomeSafeActivity.__debug)
 							Log.e(TAG, "no sms permission");
 					}
@@ -260,7 +270,7 @@ public class TrackerSrv extends JobService {
 					default:
 			}
 		}
-
+		return need;
 	}
 
 
