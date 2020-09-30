@@ -102,7 +102,7 @@ public class HomeSafeActivity extends Activity {
 	protected void onResume() {
 		super.onResume();
 		registerReceiver(mMessageReceiver,
-				new IntentFilter(TrackerSrv.EVENT_UPDATE_HOME));
+				new IntentFilter(LocationChkrSrv.EVENT_UPDATE_HOME));
 		try {
 			refreshHomeList();
 		} catch (Exception e) {
@@ -684,8 +684,8 @@ public class HomeSafeActivity extends Activity {
 			builder.setPeriodic(RECHECK_LOC_INTERVAL_MIN * 60 * 1000, RECHECK_LOC_INTERVAL_MIN * 60 * 1000 / 2);
 		else
 			builder.setPeriodic(RECHECK_LOC_INTERVAL_MIN * 60 * 1000);*/
-		builder.setMinimumLatency(RECHECK_LOC_INTERVAL_MIN);
-		builder.setOverrideDeadline(RECHECK_LOC_INTERVAL_MIN);
+		builder.setMinimumLatency(RECHECK_LOC_INTERVAL_MIN * 60 * 1000);
+		builder.setOverrideDeadline(RECHECK_LOC_INTERVAL_MIN * 60 * 1000);
 		//if (android.os.Build.VERSION.SDK_INT >= 28)
 		//	builder.setImportantWhileForeground(true);
 		//builder.setOverrideDeadline(60 * 1000);
